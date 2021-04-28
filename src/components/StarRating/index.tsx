@@ -5,9 +5,15 @@ interface StarRatingProps {
   style?: React.CSSProperties;
   totalStars?: number;
   selectedStars?: number;
+  onRate?: (...f:any) => void;
 }
 
-export function StarRating({ style = {} ,totalStars = 5, selectedStars = 0 }: StarRatingProps): JSX.Element {
+export function StarRating({
+  style = {} ,
+  totalStars = 5,
+  selectedStars = 0,
+  onRate = f => f
+}: StarRatingProps): JSX.Element {
   const createArray = (length: number) => [...Array(length)];
 
   return (
@@ -16,7 +22,7 @@ export function StarRating({ style = {} ,totalStars = 5, selectedStars = 0 }: St
           <Star 
             key={i}
             selected={selectedStars > i}
-            onSelect={() => ''}
+            onSelect={() => onRate(i+1)}
           />
       ))}
       <p>

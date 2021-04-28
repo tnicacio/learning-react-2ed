@@ -6,10 +6,18 @@ interface ColorProps {
   title: string;
   color: string;
   rating: number;
-  onRemove?: (f:any) => any;
+  onRemove?: (f:any) => void;
+  onRate?: (id: string, rating: number) => void;
 }
 
-export function Color( { id, title, color, rating, onRemove = f => f }: ColorProps): JSX.Element {
+export function Color({
+  id,
+  title,
+  color,
+  rating,
+  onRemove = f => f,
+  onRate = f => f
+}: ColorProps): JSX.Element {
   return(
     <section>
       <h1>{title}</h1>
@@ -17,7 +25,10 @@ export function Color( { id, title, color, rating, onRemove = f => f }: ColorPro
         <FaTrash />
       </button>
       <div style={{ height: 50, backgroundColor: color }} />
-      <StarRating selectedStars={rating} />
+      <StarRating 
+        selectedStars={rating}
+        onRate={rating => onRate(id, rating)}
+      />
     </section>
   )
 }
