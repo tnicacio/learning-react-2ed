@@ -1,6 +1,6 @@
 import { Color } from "./Color";
 
-type Color = {
+type ColorProps = {
   id: string;
   title: string;
   color: string;
@@ -8,7 +8,7 @@ type Color = {
 }
 
 interface ColorListProps {
-  colors: Color[];
+  colors: ColorProps[];
   onRemoveColor?: (f:any) => any;
   onRateColor?: (...f:any) => any;
 }
@@ -24,10 +24,10 @@ export function ColorList({
   return (
     <div className="color-list">
       {
-        colors.map(color => (
+        colors.map(colorItem => (
         <Color 
-          key={color.id}
-          {...color}
+          key={colorItem.id}
+          {...colorItem}
           onRemove={onRemoveColor}
           onRate={onRateColor}
         />
