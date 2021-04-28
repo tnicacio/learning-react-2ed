@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { Star } from './Star';
 
-export function StarRating({ totalStars = 5 }): JSX.Element {
-  const [selectedStars, setSelectedStars] = useState(3);
+interface StarRatingProps {
+  style?: React.CSSProperties;
+  totalStars?: number;
+}
+
+export function StarRating({ style = {} ,totalStars = 5 }: StarRatingProps): JSX.Element {
+  const [selectedStars, setSelectedStars] = useState(0);
 
   const createArray = (length: number) => [...Array(length)];
 
   return (
-    <>
+    <div style={{ padding: '5px', ...style }} >
       { createArray(totalStars).map((n,i) => (
           <Star 
             key={i}
@@ -17,6 +22,6 @@ export function StarRating({ totalStars = 5 }): JSX.Element {
       <p>
         { selectedStars } of { totalStars } stars
       </p>
-    </>
+    </div>
   )
 }
