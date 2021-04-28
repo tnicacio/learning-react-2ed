@@ -9,6 +9,6 @@ export function Star({ selected = false, onSelect }: StarProps): JSX.Element {
   return (
     <FaStar 
       color={ selected ? 'red' : 'grey' } 
-      onClick={ onSelect }/>
+      onClick={ onSelect ?? ''}/>
   )
  }

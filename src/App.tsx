@@ -1,11 +1,11 @@
-import React from 'react';
-import { StarRating } from './components/StarRating';
+import { useState } from 'react';
+import colorData from './services/colors-data.json';
+import { ColorList } from './components/ColorList';
 
 function App() {
+  const [colors] = useState(colorData);
   return (
-    <StarRating 
-      style={{ backgroundColor:'lightblue' }}
-    />
+    <ColorList colors={colors}/>
   );
 }
 
